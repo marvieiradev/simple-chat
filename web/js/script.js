@@ -9,8 +9,8 @@ const chatMessages = chat.querySelector(".chat__messages");
 
 const user = { id: "", name: "", color: "" };
 
-const selfSound = new Audio('/web/sounds/self-sound.mp3');
-const otherSound = new Audio('/web/sounds/other-sound.mp3');
+const selfSound = new Audio('./sounds/self-sound.mp3');
+const otherSound = new Audio('./sounds/other-sound.mp3');
 
 
 let websocket;
