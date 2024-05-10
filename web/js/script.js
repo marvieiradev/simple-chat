@@ -64,7 +64,7 @@ const handleLogin = (event) => {
     login.style.display = "none";
     chat.style.display = "flex";
 
-    websocket = new WebSocket("wss:simple-chat-rust.vercel.app");
+    websocket = new WebSocket("wss:simple-chat-api-zeta.vercel.app");
     websocket.onmessage = processMessage;
 }
 
