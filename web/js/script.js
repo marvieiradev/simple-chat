@@ -75,8 +75,9 @@ const handleLogin = (event) => {
     login.style.display = "none";
     chat.style.display = "flex";
 
-    //websocket = new WebSocket("wss://simple-chat-api-1131.onrender.com");
-    websocket = new WebSocket("ws://localhost:8080");
+    websocket = new WebSocket("wss://simple-chat-api-1131.onrender.com");
+    //tests
+    //websocket = new WebSocket("ws://localhost:8080");
     websocket.onmessage = processMessage;
 }
 
