@@ -7,15 +7,6 @@ const chatForm = chat.querySelector(".chat__form");
 const chatInput = chat.querySelector(".chat__input");
 const chatMessages = chat.querySelector(".chat__messages");
 
-const colors = [
-    "cadetblue",
-    "darkgoldenrod",
-    "cornflowerblue",
-    "darkkhaki",
-    "hotpink",
-    "gold"
-];
-
 const user = { id: "", name: "", color: "" };
 
 let websocket;
@@ -73,7 +64,7 @@ const handleLogin = (event) => {
     login.style.display = "none";
     chat.style.display = "flex";
 
-    websocket = new WebSocket("ws://localhost:8080");
+    websocket = new WebSocket("wss:simple-chat-rust.vercel.app");
     websocket.onmessage = processMessage;
 }
 
