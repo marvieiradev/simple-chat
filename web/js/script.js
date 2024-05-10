@@ -9,12 +9,18 @@ const chatMessages = chat.querySelector(".chat__messages");
 
 const user = { id: "", name: "", color: "" };
 
+const selfSound = new Audio('/web/sounds/self-sound.mp3');
+const otherSound = new Audio('/web/sounds/other-sound.mp3');
+
+
 let websocket;
 
 const createMessageSelfElement = (content) => {
     const div = document.createElement("div")
     div.classList.add("message__self")
     div.innerHTML = content;
+    selfSound.volume = 0.5;
+    selfSound.play();
     return div;
 }
 
@@ -29,7 +35,12 @@ const createMessageOtherElement = (content, sender, senderColor) => {
 
     span.innerHTML = sender;
     div.innerHTML += content;
+
+    otherSound.volume = 0.5;
+    otherSound.play();
+
     return div;
+
 }
 
 const getRandomColor = () => {
@@ -64,7 +75,8 @@ const handleLogin = (event) => {
     login.style.display = "none";
     chat.style.display = "flex";
 
-    websocket = new WebSocket("wss://simple-chat-api-1131.onrender.com");
+    //websocket = new WebSocket("wss://simple-chat-api-1131.onrender.com");
+    websocket = new WebSocket("ws://localhost:8080");
     websocket.onmessage = processMessage;
 }
 
