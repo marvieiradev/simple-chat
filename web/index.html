@@ -21,10 +21,24 @@
             </form>
         </section>
 
+        <section class="image__modal">
+            <div class="image__form">
+                <h2>Enviar imagem</h2>
+                <img class="image__loaded" src="/web/img/background.png" height="200px" alt="img">
+                <div class="imgs__btns">
+                    <button class="cancel__img__button">Cancelar</button>
+                    <button class="send__img__button">Enviar</button>
+                </div>
+            </div>
+        </section>
+
         <section class="chat">
             <section class="chat__messages">
             </section>
             <form class="chat__form">
+                <input type="file" class="load__image">
+                <span class="material-symbols-outlined">photo_library</span>
+                </input>
                 <input type="text" class="chat__input" placeholder="Digite uma mensagem" required>
                 <button type="submit" class="chat__button">
                     <span class="material-symbols-outlined">send</span>

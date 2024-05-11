@@ -6,6 +6,12 @@ const chat = document.querySelector(".chat");
 const chatForm = chat.querySelector(".chat__form");
 const chatInput = chat.querySelector(".chat__input");
 const chatMessages = chat.querySelector(".chat__messages");
+const loadImages = chat.querySelector(".load__image")
+
+const imageModal = document.querySelector(".image__modal");
+const imageLoaded = imageModal.querySelector(".image__loaded")
+const sendImg = imageModal.querySelector(".send__img__button");
+
 
 const user = { id: "", name: "", color: "" };
 
@@ -83,7 +89,6 @@ const handleLogin = (event) => {
 
 const sendMessage = (event) => {
     event.preventDefault();
-
     const message = {
         userId: user.id,
         userName: user.name,
@@ -95,5 +100,32 @@ const sendMessage = (event) => {
     chatInput.value = "";
 }
 
+const loadImage = (event) => {
+    imageModal.style.display = "flex";
+    if (!(event.target && event.target.files && event.target.files.length > 0)) {
+        return;
+    }
+
+    var r = new FileReader();
+    r.onload = function () {
+        imageLoaded.src = r.result;
+    }
+    r.readAsDataURL(event.target.files[0]);
+}
+
+const sendImage = () => {
+    imageModal.style.display = "none";
+    const message = {
+        userId: user.id,
+        userName: user.name,
+        userColor: user.color,
+        content: `<img src="${imageLoaded.src}" height="200px" alt="img">`
+    };
+
+    websocket.send(JSON.stringify(message))
+}
+
 loginForm.addEventListener("submit", handleLogin);
 chatForm.addEventListener("submit", sendMessage);
+loadImages.addEventListener("change", loadImage);
+sendImg.addEventListener("click", sendImage);

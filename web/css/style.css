@@ -24,7 +24,8 @@ body {
     justify-content: center;
 }
 
-.login {
+.login,
+.image__modal {
     width: 100%;
     max-width: 330px;
     background-color: #00021d;
@@ -32,7 +33,8 @@ body {
     padding: 20px;
 }
 
-.login>h2 {
+.login>h2,
+.image__modal>h2 {
     text-align: center;
     font-weight: 600;
     font-size: 1.5rem;
@@ -43,6 +45,17 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.image__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.image__modal {
+    display: none;
 }
 
 .login__input {
@@ -60,7 +73,9 @@ body {
     outline: 2px solid #f2f2f2;
 }
 
-.login__button {
+.login__button,
+.cancel__img__button,
+.send__img__button {
     border: none;
     padding: 15px;
     border-radius: 5px;
@@ -73,6 +88,17 @@ body {
 
 .login__button:hover {
     background-color: #BAD8FE;
+}
+
+.imgs__btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cancel__img__button,
+.send__img__button {
+    width: 45%;
 }
 
 .chat {
@@ -113,21 +139,25 @@ body {
     font-size: 1rem;
 }
 
-.chat__button {
+.chat__button,
+.load__image {
     border: none;
     background: none;
     color: #f2f2f2;
     cursor: pointer;
 }
 
-.chat__button>span {
+.chat__button>span,
+.load__image>span {
     font-size: 1.8rem;
 }
 
-.chat__button:hover {
+.chat__button:hover,
+.load__image:hover {
     color: #BAD8FE;
     scale: 1.1;
 }
+
 
 .chat__messages>div {
     padding: 10px;
