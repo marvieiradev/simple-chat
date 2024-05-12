@@ -5,19 +5,19 @@ const loginInput = login.querySelector(".login__input");
 const chat = document.querySelector(".chat");
 const chatForm = chat.querySelector(".chat__form");
 const chatInput = chat.querySelector(".chat__input");
+const chatSendButton = chat.querySelector(".chat__button");
 const chatMessages = chat.querySelector(".chat__messages");
 const loadImages = chat.querySelector(".load__image")
 
 const imageModal = document.querySelector(".image__modal");
 const imageLoaded = imageModal.querySelector(".image__loaded")
 const sendImg = imageModal.querySelector(".send__img__button");
-
+const cancelSendImg = imageModal.querySelector(".cancel__img__button");
 
 const user = { id: "", name: "", color: "" };
 
 const selfSound = new Audio('./sounds/self-sound.mp3');
 const otherSound = new Audio('./sounds/other-sound.mp3');
-
 
 let websocket;
 
@@ -46,7 +46,6 @@ const createMessageOtherElement = (content, sender, senderColor) => {
     otherSound.play();
 
     return div;
-
 }
 
 const getRandomColor = () => {
@@ -102,6 +101,10 @@ const sendMessage = (event) => {
 
 const loadImage = (event) => {
     imageModal.style.display = "flex";
+    chatInput.disabled = true;
+    loadImages.disabled = true;
+    chatSendButton.disabled = true;
+
     if (!(event.target && event.target.files && event.target.files.length > 0)) {
         return;
     }
@@ -119,13 +122,25 @@ const sendImage = () => {
         userId: user.id,
         userName: user.name,
         userColor: user.color,
-        content: `<img src="${imageLoaded.src}" height="200px" alt="img">`
+        content: `<img src="${imageLoaded.src}" width="230px" alt="img">`
     };
 
     websocket.send(JSON.stringify(message))
+    chatInput.disabled = false;
+    loadImages.disabled = false;
+    chatSendButton.disabled = false;
+}
+
+const cancelSendImage = () => {
+    chatInput.disabled = false;
+    loadImages.disabled = false;
+    chatSendButton.disabled = false;
+    imageModal.style.display = 'none';
+    imageLoaded.src = "";
 }
 
 loginForm.addEventListener("submit", handleLogin);
 chatForm.addEventListener("submit", sendMessage);
 loadImages.addEventListener("change", loadImage);
 sendImg.addEventListener("click", sendImage);
+cancelSendImg.addEventListener("click", cancelSendImage);
