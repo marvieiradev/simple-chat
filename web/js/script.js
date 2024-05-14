@@ -24,9 +24,17 @@ let websocket;
 var isYou = true;
 
 const createMessageSelfElement = (content) => {
-    const div = document.createElement("div")
+    const div = document.createElement("div");
+    const container = document.createElement("div");
+    const time = document.createElement("span");
     div.classList.add("message__self")
-    div.innerHTML = content;
+    time.classList.add("time__self");
+    div.appendChild(container);
+    div.appendChild(time);
+
+    const now = new Date();
+    container.innerHTML = content;
+    time.innerText = (now.getHours() + ":" + now.getMinutes());
     selfSound.volume = 0.5;
     selfSound.play();
     return div;
@@ -34,15 +42,22 @@ const createMessageSelfElement = (content) => {
 
 const createMessageOtherElement = (content, sender, senderColor) => {
     const div = document.createElement("div");
+    const container = document.createElement("div");
     const span = document.createElement("span");
+    const time = document.createElement("span");
     div.classList.add("message__other");
+    time.classList.add("time__other");
     span.classList.add("message__sender");
     span.style.color = senderColor;
 
     div.appendChild(span);
+    div.appendChild(container)
+    div.appendChild(time);
 
+    const now = new Date();
+    time.innerText = (now.getHours() + ":" + now.getMinutes());
     span.innerText = sender;
-    div.innerHTML += content;
+    container.innerHTML += content;
 
     otherSound.volume = 0.5;
     otherSound.play();
@@ -89,9 +104,9 @@ const handleLogin = (event) => {
     login.style.display = "none";
     chat.style.display = "flex";
 
-    //websocket = new WebSocket("wss://simple-chat-api-1131.onrender.com");
+    websocket = new WebSocket("wss://simple-chat-api-1131.onrender.com");
     //tests
-    websocket = new WebSocket("ws://localhost:8080");
+    //websocket = new WebSocket("ws://localhost:8080");
 
     websocket.onmessage = processMessage;
 

@@ -181,6 +181,23 @@ body {
     font-weight: 700;
 }
 
+.time__self,
+.time__other {
+    display: block;
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 0.8rem;
+    text-align: end;
+}
+
+.time__self {
+    color: #121212;
+}
+
+.time__other {
+    color: #f2f2f2;
+}
+
 input[type="file"] {
     display: none;
 }
