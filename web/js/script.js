@@ -18,8 +18,10 @@ const user = { id: "", name: "", color: "" };
 
 const selfSound = new Audio('./sounds/self-sound.mp3');
 const otherSound = new Audio('./sounds/other-sound.mp3');
+const serverSound = new Audio('./sounds/server-sound.mp3');
 
 let websocket;
+var isYou = true;
 
 const createMessageSelfElement = (content) => {
     const div = document.createElement("div")
@@ -63,13 +65,20 @@ const scrollScreen = () => {
 const processMessage = ({ data }) => {
     const { userId, userName, userColor, content } = JSON.parse(data);
 
-    const message = userId == user.id
-        ? createMessageSelfElement(content)
-        : createMessageOtherElement(content, userName, userColor);
+    let message = null
 
+    if (userColor != null) {
+        message = userId == user.id
+            ? createMessageSelfElement(content)
+            : createMessageOtherElement(content, userName, userColor);
+    } else {
+        userId == user.id ? message = createMessageServer("você" + content)
+            : message = createMessageServer(userName + "" + content);
+    }
     chatMessages.appendChild(message);
     scrollScreen();
 }
+
 const handleLogin = (event) => {
     event.preventDefault();
 
@@ -83,7 +92,28 @@ const handleLogin = (event) => {
     websocket = new WebSocket("wss://simple-chat-api-1131.onrender.com");
     //tests
     //websocket = new WebSocket("ws://localhost:8080");
+
     websocket.onmessage = processMessage;
+
+    setTimeout(() => {
+        userLogin(user.name)
+    }, "1000");
+}
+
+function userLogin(name) {
+    const message = { userId: user.id, userName: user.name, content: ` entrou na conversa.` };
+    websocket.send(JSON.stringify(message))
+}
+
+const createMessageServer = (content) => {
+    const div = document.createElement("div")
+    const span = document.createElement("span");
+    div.classList.add("message__server")
+    div.appendChild(span);
+    span.innerText = content;
+    serverSound.volume = 0.5;
+    serverSound.play();
+    return div;
 }
 
 const sendMessage = (event) => {
