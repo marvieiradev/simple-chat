@@ -41,7 +41,7 @@ const createMessageOtherElement = (content, sender, senderColor) => {
 
     div.appendChild(span);
 
-    span.innerHTML = sender;
+    span.innerText = sender;
     div.innerHTML += content;
 
     otherSound.volume = 0.5;
@@ -89,18 +89,18 @@ const handleLogin = (event) => {
     login.style.display = "none";
     chat.style.display = "flex";
 
-    websocket = new WebSocket("wss://simple-chat-api-1131.onrender.com");
+    //websocket = new WebSocket("wss://simple-chat-api-1131.onrender.com");
     //tests
-    //websocket = new WebSocket("ws://localhost:8080");
+    websocket = new WebSocket("ws://localhost:8080");
 
     websocket.onmessage = processMessage;
 
     setTimeout(() => {
-        userLogin(user.name)
+        userLogin()
     }, "1000");
 }
 
-function userLogin(name) {
+function userLogin() {
     const message = { userId: user.id, userName: user.name, content: ` entrou na conversa.` };
     websocket.send(JSON.stringify(message))
 }
@@ -122,7 +122,7 @@ const sendMessage = (event) => {
         userId: user.id,
         userName: user.name,
         userColor: user.color,
-        content: chatInput.value
+        content: chatInput.value.replace("<", '&lt;')
     };
 
     websocket.send(JSON.stringify(message))
