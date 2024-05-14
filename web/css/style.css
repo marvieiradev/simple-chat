@@ -161,7 +161,8 @@ body {
     background-color: #FFF;
     border-radius: 5px;
     align-self: center;
-    height: 25px;
+    max-height: 40px;
+    min-height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,6 +172,7 @@ body {
     color: #121212;
     font-size: 0.8rem;
     font-weight: 600;
+    line-height: 125%;
 }
 
 .message__sender {
