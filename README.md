@@ -10,7 +10,7 @@ Apena digite seu nome e clique em entrar.
 
 ## Informações
 
-Projeto desenvolvido utilizando Node.js, HTML, CSS e JavaScript. Utilizando a bilblioteca WS (Webservice).
+Projeto desenvolvido utilizando Node.js, HTML, CSS e JavaScript. Utilizando a biblioteca WS (Webservice).
 
 ## Demonstração
 
