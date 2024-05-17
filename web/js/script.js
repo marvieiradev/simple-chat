@@ -104,8 +104,8 @@ const handleLogin = (event) => {
     login.style.display = "none";
     chat.style.display = "flex";
 
-    websocket = new WebSocket("wss://simple-chat-api-qyuz.onrender.com");
-    //tests
+    websocket = new WebSocket("wss://simple-chat-api-2tka.onrender.com");
+    //Para testes na sua máquina utilize: "ws://localhost:8080"
     //websocket = new WebSocket("ws://localhost:8080");
 
     websocket.onmessage = processMessage;
@@ -187,5 +187,6 @@ const cancelSendImage = () => {
 loginForm.addEventListener("submit", handleLogin);
 chatForm.addEventListener("submit", sendMessage);
 loadImages.addEventListener("change", loadImage);
-sendImg.addEventListener("click", sendImage);
 cancelSendImg.addEventListener("click", cancelSendImage);
+//Devido a limitações do modo free do Render não é possível o envio de imagens, porém no servidor local para enviar imagens, basta descomentar a linha abaixo:
+//sendImg.addEventListener("click", sendImage);
