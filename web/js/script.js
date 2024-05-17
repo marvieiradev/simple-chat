@@ -170,7 +170,8 @@ const sendImage = () => {
         content: `<img src="${imageLoaded.src}" width="230px" alt="img">`
     };
 
-    websocket.send(JSON.stringify(message))
+    //Devido a limitações do modo free do Render não é possível o envio de imagens, porém no servidor local para enviar imagens, basta descomentar a linha abaixo:
+    //websocket.send(JSON.stringify(message))
     chatInput.disabled = false;
     loadImages.disabled = false;
     chatSendButton.disabled = false;
@@ -188,5 +189,4 @@ loginForm.addEventListener("submit", handleLogin);
 chatForm.addEventListener("submit", sendMessage);
 loadImages.addEventListener("change", loadImage);
 cancelSendImg.addEventListener("click", cancelSendImage);
-//Devido a limitações do modo free do Render não é possível o envio de imagens, porém no servidor local para enviar imagens, basta descomentar a linha abaixo:
-//sendImg.addEventListener("click", sendImage);
+sendImg.addEventListener("click", sendImage);
