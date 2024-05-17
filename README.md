@@ -12,6 +12,11 @@ Apena digite seu nome e clique em entrar.
 
 Projeto desenvolvido utilizando Node.js, HTML, CSS e JavaScript. Utilizando a biblioteca WS (Webservice).
 
+## Comandos
+
+<code>npm install</code> Para instalar as dependências.
+<code>npm start</code> Para iniciar o servidor.
+
 ## Demonstração
 
 https://simple-chatv1.vercel.app/
