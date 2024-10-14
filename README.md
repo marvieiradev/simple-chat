@@ -20,3 +20,5 @@ Projeto desenvolvido utilizando Node.js, HTML, CSS e JavaScript. Utilizando a bi
 ## Demonstração
 
 https://simple-chatv1.vercel.app/
+
+<img src="screenshot.jpg"/>
